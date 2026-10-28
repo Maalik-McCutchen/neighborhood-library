@@ -19,7 +19,6 @@ public class NeighborhoodLibrary {
 
         System.out.println("Enter the book ID to check out, or X to go back home: ");
         String bookId = myScanner.nextLine();
-        myScanner.nextLine();
         if (bookId.equalsIgnoreCase("X")) {
             return;
         }
@@ -62,7 +61,6 @@ public class NeighborhoodLibrary {
 
         System.out.println("Enter X to go back home: ");
         String bookId = myScanner.nextLine();
-        myScanner.nextLine();
         if (bookId.equalsIgnoreCase("X")) {
             return;
         }
@@ -84,7 +82,6 @@ public class NeighborhoodLibrary {
 
         System.out.println("Enter the book ID to check in, or X to go back home: ");
         String bookId = myScanner.nextLine();
-        myScanner.nextLine();
         if (bookId.equalsIgnoreCase("X")) {
             return;
 
@@ -146,7 +143,6 @@ public class NeighborhoodLibrary {
 
 
         String enterANumber = myScanner.nextLine();
-        myScanner.nextLine();
 
         switch (enterANumber) {
             case "1":
