@@ -33,6 +33,20 @@ public class NeighborhoodLibrary {
         }
     }
 
+    public static void showCheckedOutBooks(){
+
+        for (int i = 0; i < books.length; i++) {
+            if (books[i].isCheckedOut()) {
+                System.out.println("ID: " + books[i].getId());
+                System.out.println("ISBN: " + books[i].getIsbn());
+                System.out.println("Title: " + books[i].getTitle());
+                System.out.println("Checked-out to: " + books[i].getCheckedOutTo());
+            }
+
+        }
+
+    }
+
 
     private static Book[] books = new Book[20];
 
