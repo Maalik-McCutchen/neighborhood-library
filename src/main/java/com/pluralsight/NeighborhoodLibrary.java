@@ -60,7 +60,7 @@ public class NeighborhoodLibrary {
             System.out.println("No books are currently checked out.");
         }
 
-        System.out.println("Enter 0 to go back home: ");
+        System.out.println("Enter X to go back home: ");
         String bookId = myScanner.nextLine();
         myScanner.nextLine();
         if (bookId.equalsIgnoreCase("X")) {
