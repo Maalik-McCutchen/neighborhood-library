@@ -15,25 +15,35 @@ public class NeighborhoodLibrary {
                 System.out.println("Title: " + books[i].getTitle());
             }
         }
+        boolean bookFound = false;
 
-        System.out.println("Enter the book ID to check out, or 0 to go back home: ");
-        int bookId = myScanner.nextInt();
+        System.out.println("Enter the book ID to check out, or X to go back home: ");
+        String bookId = myScanner.nextLine();
         myScanner.nextLine();
-        if (bookId == 0) {
+        if (bookId.equalsIgnoreCase("X")) {
             return;
         }
 
+        int id = Integer.parseInt(bookId);
+
         for (int i = 0; i < books.length; i++) {
-            if (bookId == books[i].getId()) {
+            if (id == books[i].getId() && !books[i].isCheckedOut()) {
                 System.out.println("Enter your name: ");
                 String name = myScanner.nextLine();
                 books[i].checkOut(name);
+                System.out.println(books[i].getTitle() + ": " + "Was successfully checked-Out");
+
+                bookFound = true;
 
             }
         }
+        if (!bookFound) {
+            System.out.println("Book not found or is checked out.");
+        }
     }
 
-    public static void showCheckedOutBooks(){
+    public static void showCheckedOutBooks(Scanner myScanner){
+       boolean bookFound = false;
 
         for (int i = 0; i < books.length; i++) {
             if (books[i].isCheckedOut()) {
@@ -41,12 +51,61 @@ public class NeighborhoodLibrary {
                 System.out.println("ISBN: " + books[i].getIsbn());
                 System.out.println("Title: " + books[i].getTitle());
                 System.out.println("Checked-out to: " + books[i].getCheckedOutTo());
+
+                bookFound = true;
             }
 
         }
+        if(!bookFound) {
+            System.out.println("No books are currently checked out.");
+        }
 
+        System.out.println("Enter 0 to go back home: ");
+        String bookId = myScanner.nextLine();
+        myScanner.nextLine();
+        if (bookId.equalsIgnoreCase("X")) {
+            return;
+        }
     }
 
+    public static void userCheckIn(Scanner myScanner) {
+
+        for (int i = 0; i < books.length; i++) {
+            if (books[i].isCheckedOut()) {
+                System.out.println("ID: " + books[i].getId());
+                System.out.println("ISBN: " + books[i].getIsbn());
+                System.out.println("Title: " + books[i].getTitle());
+
+
+            }
+
+        }
+        boolean bookFound = false;
+
+        System.out.println("Enter the book ID to check in, or X to go back home: ");
+        String bookId = myScanner.nextLine();
+        myScanner.nextLine();
+        if (bookId.equalsIgnoreCase("X")) {
+            return;
+
+        }
+        int id = Integer.parseInt(bookId);
+
+        for (int i = 0; i < books.length; i++) {
+            if (id == books[i].getId() && books[i].isCheckedOut()) {
+                books[i].checkIn();
+                System.out.println("You have successfully returned: " + books[i].getTitle());
+
+                bookFound = true;
+
+            }
+
+            }
+        if (!bookFound) {
+            System.out.println("Book not found or is not checked out.");
+        }
+
+    }
 
     private static Book[] books = new Book[20];
 
@@ -82,22 +141,24 @@ public class NeighborhoodLibrary {
             System.out.println("Welcome! enter your choice of books: ");
             System.out.println("1 - Show Available Books: ");
             System.out.println("2 - Show Checked Out Books: ");
-            System.out.println("3 - Exit");
+            System.out.println("3 - Check in a book: ");
+            System.out.println("4 - Exit");
 
 
-        int enterANumber = myScanner.nextInt();
+        String enterANumber = myScanner.nextLine();
         myScanner.nextLine();
 
-
-
         switch (enterANumber) {
-            case 1:
+            case "1":
             showAvailableBooks(myScanner);
                 break;
-            case 2:
-                showCheckedOutBooks();
+            case "2":
+                showCheckedOutBooks(myScanner);
                 break;
-            case 3:
+            case "3":
+                userCheckIn(myScanner);
+                break;
+            case "4":
                 System.out.println("Goodbye");
                 done = true;
                 break;
